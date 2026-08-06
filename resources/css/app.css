@@ -1,3 +1,4 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
 @import 'tailwindcss';
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
@@ -6,4 +7,71 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+:root {
+    --dark-brown: #3c2f2f;
+    --cream-bg: #fdf8f2;
+    --yellow-accent: #f0d53c;
+    --yellow-hover: #e0c42b;
+    --light-cream: #fffdf9;
+    --text-muted: #6e5d5d;
+}
+
+body {
+    background-color: var(--cream-bg);
+    color: var(--dark-brown);
+}
+
+/* Component Imports */
+@import './components/navbar.css';
+@import './components/footer.css';
+
+/* Page Imports */
+@import './pages/menu.css';
+@import './pages/product-detail.css';
+@import './pages/cart.css';
+
+/* Product Detail Button & Inputs Fix */
+.add-cart-btn,
+.product-info button,
+.product-submit-btn {
+    display: inline-block !important;
+    background-color: #f0d53c !important;
+    color: #000000 !important;
+    padding: 10px 24px !important;
+    border: none !important;
+    border-radius: 20px !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    transition: background-color 0.2s ease !important;
+    margin: 10px 0 !important;
+}
+
+.add-cart-btn:hover,
+.product-info button:hover,
+.product-submit-btn:hover {
+    background-color: #d6bc2d !important;
+    color: #000000 !important;
+}
+
+/* Quantity Field Styling Fix */
+.quantity-section label {
+    display: inline-block;
+    font-weight: 700;
+    margin-right: 8px;
+    color: #3c2f2f;
+}
+
+.quantity-section input,
+.product-info input[type="number"] {
+    display: inline-block !important;
+    width: 70px !important;
+    padding: 6px 10px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 8px !important;
+    font-size: 15px !important;
+    background-color: #ffffff !important;
 }
