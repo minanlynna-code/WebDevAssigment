@@ -79,5 +79,23 @@ class ProductSeeder extends Seeder
             'image' => 'greentea.jpg',
             'stock' => 25,
         ]);
+
+                Product::create([
+            'category_id' => 1,
+            'name' => 'Cappuccino',
+            'description' => 'Espresso with milk foam.',
+            'price' => 3.00,
+            'image' => 'cappuccino.jpg',
+            'stock' => 18,
+        ]);
+
+        Product::create([
+            'category_id' => 2,
+            'name' => 'Green Tea',
+            'description' => 'Fresh green tea.',
+            'price' => 1.80,
+            'image' => 'greentea.jpg',
+            'stock' => 25,
+        ]);
     }
 }

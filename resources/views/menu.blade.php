@@ -10,7 +10,23 @@
         <h1>Our Menu</h1>
         <p>Freshly brewed coffee and delicious treats made with love.</p>
     </div>
+    <div class="category-filter">
 
+        <a href="{{ route('menu.index') }}"
+            class="{{ request('category') ? '' : 'active' }}">
+            All
+        </a>
+
+        @foreach($categories as $category)
+
+        <a href="{{ route('menu.index', ['category' => $category->id]) }}"
+            class="{{ request('category') == $category->id ? 'active' : '' }}">
+            {{ $category->name }}
+        </a>
+
+        @endforeach
+
+    </div>
     <div class="menu-grid">
 
         @forelse($products as $product)

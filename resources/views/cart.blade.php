@@ -1,111 +1,148 @@
 @extends('layouts.app')
 
-@section('title', 'Sun Cafe - Cart')
+@section('title', 'Cart & Checkout')
 
 @section('content')
-
-<div class="menu-container">
-
-    <div class="menu-header">
-        <h1>Your Cart</h1>
-    </div>
-
-    @if(count($cart) > 0)
-
-        <table class="cart-table">
-
-            <thead>
-                <tr>
-                    <th>Drink</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
-                    <th></th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                @php $total = 0; @endphp
-
-                @foreach($cart as $item)
-
-                    @php
-                        $subtotal = $item['price'] * $item['quantity'];
-                        $total += $subtotal;
-                    @endphp
-
-                    <tr>
-
-                        <td>{{ $item['name'] }}</td>
-
-                        <td>${{ number_format($item['price'],2) }}</td>
-
-                        <td>
-
-                            <form action="{{ route('cart.update', $item['id']) }}" method="POST" class="qty-form">
-
-                                @csrf
-
-                                <input type="number"
-                                       name="quantity"
-                                       value="{{ $item['quantity'] }}"
-                                       min="1">
-
-                                <button type="submit">Update</button>
-
-                            </form>
-
-                        </td>
-
-                        <td>${{ number_format($subtotal,2) }}</td>
-
-                        <td>
-
-                            <form action="{{ route('cart.remove', $item['id']) }}" method="POST">
-
-                                @csrf
-
-                                <button type="submit" class="remove-btn">
-                                    Remove
-                                </button>
-
-                            </form>
-
-                        </td>
-
-                    </tr>
-
-                @endforeach
-
-            </tbody>
-
-        </table>
-
-        <div class="cart-total">
-            Total: ${{ number_format($total,2) }}
+<form class="checkout-page"
+    action="{{ route('checkout.index') }}"
+    method="GET">
+    <!-- Progress Bar -->
+    <div class="checkout-progress">
+        <div class="step active">
+            <div class="circle"></div>
+            <span>Menu</span>
         </div>
 
-        <a href="{{ route('menu.index') }}" class="back-link">
-            ← Continue Shopping
-        </a>
+        <div class="line active"></div>
 
-        <a href="#" class="checkout-btn">
-            Proceed to Checkout
-        </a>
+        <div class="step active">
+            <div class="circle"></div>
+            <span>Cart</span>
+        </div>
 
-    @else
+        <div class="line"></div>
 
-        <p style="text-align:center; font-size:18px; color:#777;">
-            Your cart is empty.
-        </p>
+        <div class="step">
+            <div class="circle"></div>
+            <span>Checkout</span>
+        </div>
+    </div>
 
-        <a href="{{ route('menu.index') }}" class="back-link">
-            ← Back to Menu
-        </a>
+    <!-- Pickup Time -->
+    <div class="pickup-section">
+        <h2>Pickup Time</h2>
 
-    @endif
+        <div class="pickup-options">
+            <label><input type="radio" name="pickup" value="now" checked> Now</label>
+            <label><input type="radio" name="pickup" value="15"> 15 Min</label>
+            <label><input type="radio" name="pickup" value="30"> 30 Min</label>
+            <label><input type="radio" name="pickup" value="60"> 60 Min</label>
+        </div>
+    </div>
 
-</div>
+    <!-- Cart Summary -->
+    <div class="summary-section">
+        <h2>Summary</h2>
 
+        @php $total = 0; @endphp
+
+        @forelse($cart as $item)
+
+        @php
+        $subtotal = $item['price'] * $item['quantity'];
+        $total += $subtotal;
+        @endphp
+
+        <div class="summary-item">
+
+            <div class="summary-image">
+                <img src="{{ asset('images/' . $item['image']) }}"
+                    alt="{{ $item['name'] }}">
+            </div>
+
+            <div class="summary-info">
+                <h3>{{ $item['name'] }}</h3>
+                <div class="qty-control">
+
+                    <form action="{{ route('cart.decrease',$item['id']) }}" method="POST">
+                        @csrf
+                        <button>-</button>
+                    </form>
+
+                    <span>{{ $item['quantity'] }}</span>
+
+                    <form action="{{ route('cart.increase',$item['id']) }}" method="POST">
+                        @csrf
+                        <button>+</button>
+                    </form>
+
+                </div>
+            </div>
+
+            <div class="summary-price">
+                ${{ number_format($subtotal,2) }}
+            </div>
+            <form action="{{ route('cart.remove',$item['id']) }}" method="POST">
+
+                @csrf
+
+                <button class="remove-btn">
+                    Remove
+                </button>
+
+            </form>
+
+        </div>
+
+        @empty
+
+        <p>Your cart is empty.</p>
+
+        @endforelse
+
+    </div>
+
+    <!-- Totals -->
+    <div class="totals-section">
+
+        <div class="total-row">
+            <span>Subtotal</span>
+            <span>${{ number_format($total,2) }}</span>
+        </div>
+
+        <div class="total-row">
+            <span>Discount</span>
+            <span>$0.00</span>
+        </div>
+
+        <div class="total-row grand-total">
+            <span>Total</span>
+            <span>${{ number_format($total,2) }}</span>
+        </div>
+
+    </div>
+
+    <!-- Remark -->
+    <div class="remark-section">
+        <h2>Remark</h2>
+
+        <textarea
+            name="remark"
+            placeholder="Less sugar, no ice, extra shot..."></textarea>
+    </div>
+
+    <!-- Checkout Button -->
+    <div class="checkout-bottom">
+        <form action="{{ route('checkout.store') }}" method="POST">
+
+            @csrf
+
+            <button class="checkout-button">
+                CHECK OUT
+            </button>
+
+        </form>
+    </div>
+
+</form>
 @endsection

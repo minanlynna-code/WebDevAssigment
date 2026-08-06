@@ -92,3 +92,15 @@
         display: block;
     }
 }
+.logout-btn {
+    background: #3c2f2f;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background: #2a2020;
+}

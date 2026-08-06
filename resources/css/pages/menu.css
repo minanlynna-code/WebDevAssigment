@@ -1,3 +1,10 @@
+.menu-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 24px;
+}
 .menu-container {
     max-width: 1400px;
     margin: 40px auto;
@@ -65,7 +72,31 @@
     margin-bottom: 14px;
     transition: background 0.3s;
 }
+.category-filter{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin:30px 0;
+    flex-wrap:wrap;
+}
 
+.category-filter a{
+    padding:10px 22px;
+    border-radius:25px;
+    background:#eee;
+    text-decoration:none;
+    color:#333;
+    transition:.3s;
+}
+
+.category-filter a:hover{
+    background:#f0d53c;
+}
+
+.category-filter .active{
+    background:#f0d53c;
+    font-weight:bold;
+}
 .order-btn:hover {
     background: #d6bc2d;
     color: #000;

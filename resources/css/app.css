@@ -1,13 +1,10 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
-@import 'tailwindcss';
-
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
-}
+@import './components/navbar.css';
+@import './components/footer.css';
+@import './pages/menu.css';
+@import './pages/product-detail.css';
+@import './pages/cart.css';
+@import './pages/auth.css';
 
 :root {
     --dark-brown: #3c2f2f;
@@ -23,22 +20,13 @@ body {
     color: var(--dark-brown);
 }
 
-/* Component Imports */
-@import './components/navbar.css';
-@import './components/footer.css';
-
-/* Page Imports */
-@import './pages/menu.css';
-@import './pages/product-detail.css';
-@import './pages/cart.css';
-
 /* Product Detail Button & Inputs Fix */
 .add-cart-btn,
 .product-info button,
 .product-submit-btn {
     display: inline-block !important;
     background-color: #f0d53c !important;
-    color: #000000 !important;
+    color: #000 !important;
     padding: 10px 24px !important;
     border: none !important;
     border-radius: 20px !important;
@@ -46,7 +34,7 @@ body {
     font-size: 14px !important;
     cursor: pointer !important;
     text-decoration: none !important;
-    transition: background-color 0.2s ease !important;
+    transition: background-color .2s ease !important;
     margin: 10px 0 !important;
 }
 
@@ -54,10 +42,9 @@ body {
 .product-info button:hover,
 .product-submit-btn:hover {
     background-color: #d6bc2d !important;
-    color: #000000 !important;
+    color: #000 !important;
 }
 
-/* Quantity Field Styling Fix */
 .quantity-section label {
     display: inline-block;
     font-weight: 700;
@@ -73,5 +60,5 @@ body {
     border: 1px solid #ccc !important;
     border-radius: 8px !important;
     font-size: 15px !important;
-    background-color: #ffffff !important;
+    background-color: #fff !important;
 }

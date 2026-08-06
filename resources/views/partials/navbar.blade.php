@@ -75,4 +75,19 @@
         </li>
 
     </ul>
+    @auth
+    <span class="me-3">Hi, {{ Auth::user()->name }}</span>
+
+    <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+        @csrf
+        <button type="submit" class="nav-btn logout-btn">
+            Logout
+        </button>
+    </form>
+    @endauth
+
+    @guest
+    <a href="{{ route('login') }}" class="nav-btn">Login</a>
+    <a href="{{ route('register') }}" class="nav-btn register-btn">Register</a>
+    @endguest
 </nav>
