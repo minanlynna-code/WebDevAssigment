@@ -3,11 +3,14 @@
 @section('title', 'Cart & Checkout')
 
 @section('content')
-<form class="checkout-page"
-    action="{{ route('checkout.index') }}"
-    method="GET">
-    <!-- Progress Bar -->
+
+<div class="checkout-page">
+
+    <!-- =========================
+         PROGRESS
+    ========================== -->
     <div class="checkout-progress">
+
         <div class="step active">
             <div class="circle"></div>
             <span>Menu</span>
@@ -20,129 +23,327 @@
             <span>Cart</span>
         </div>
 
-        <div class="line"></div>
+        <div class="line active"></div>
 
-        <div class="step">
+        <div class="step active">
             <div class="circle"></div>
             <span>Checkout</span>
         </div>
+
     </div>
 
-    <!-- Pickup Time -->
-    <div class="pickup-section">
-        <h2>Pickup Time</h2>
+     <!-- =========================
+             PICKUP TIME
+        ========================== -->
+        <div class="pickup-section">
 
-        <div class="pickup-options">
-            <label><input type="radio" name="pickup" value="now" checked> Now</label>
-            <label><input type="radio" name="pickup" value="15"> 15 Min</label>
-            <label><input type="radio" name="pickup" value="30"> 30 Min</label>
-            <label><input type="radio" name="pickup" value="60"> 60 Min</label>
-        </div>
-    </div>
+            <h2>Pickup Time</h2>
 
-    <!-- Cart Summary -->
-    <div class="summary-section">
-        <h2>Summary</h2>
+            <p class="section-description">
+                When would you like to pick up your order?
+            </p>
 
-        @php $total = 0; @endphp
 
-        @forelse($cart as $item)
+            <div class="pickup-options">
 
-        @php
-        $subtotal = $item['price'] * $item['quantity'];
-        $total += $subtotal;
-        @endphp
+                <label class="pickup-option">
+                    <input
+                        type="radio"
+                        name="pickup_time"
+                        value="now"
+                        checked
+                    >
 
-        <div class="summary-item">
+                    <span>Now</span>
+                </label>
 
-            <div class="summary-image">
-                <img src="{{ asset('images/' . $item['image']) }}"
-                    alt="{{ $item['name'] }}">
+
+                <label class="pickup-option">
+                    <input
+                        type="radio"
+                        name="pickup_time"
+                        value="15 minutes"
+                    >
+
+                    <span>15 Min</span>
+                </label>
+
+
+                <label class="pickup-option">
+                    <input
+                        type="radio"
+                        name="pickup_time"
+                        value="30 minutes"
+                    >
+
+                    <span>30 Min</span>
+                </label>
+
+
+                <label class="pickup-option">
+                    <input
+                        type="radio"
+                        name="pickup_time"
+                        value="60 minutes"
+                    >
+
+                    <span>60 Min</span>
+                </label>
+
             </div>
 
-            <div class="summary-info">
-                <h3>{{ $item['name'] }}</h3>
-                <div class="qty-control">
+        </div>
 
-                    <form action="{{ route('cart.decrease',$item['id']) }}" method="POST">
+    @if(count($cart) > 0)
+
+        <!-- =========================
+             CART ITEMS
+        ========================== -->
+        <div class="summary-section">
+
+            <h2>Your Cart</h2>
+
+            @php
+                $total = 0;
+            @endphp
+
+            @foreach($cart as $item)
+
+                @php
+                    $subtotal = $item['price'] * $item['quantity'];
+                    $total += $subtotal;
+                @endphp
+
+                <div class="summary-item">
+
+                    <!-- Product Image -->
+                    <div class="summary-image">
+                        <img
+                            src="{{ asset('images/' . $item['image']) }}"
+                            alt="{{ $item['name'] }}"
+                        >
+                    </div>
+
+
+                    <!-- Product Info -->
+                    <div class="summary-info">
+
+                        <h3>{{ $item['name'] }}</h3>
+
+                        <p>
+                            ${{ number_format($item['price'], 2) }} each
+                        </p>
+
+
+                        <!-- Quantity -->
+                        <div class="qty-control">
+
+                            <form
+                                action="{{ route('cart.decrease', $item['id']) }}"
+                                method="POST"
+                            >
+                                @csrf
+
+                                <button type="submit">−</button>
+                            </form>
+
+
+                            <span>
+                                {{ $item['quantity'] }}
+                            </span>
+
+
+                            <form
+                                action="{{ route('cart.increase', $item['id']) }}"
+                                method="POST"
+                            >
+                                @csrf
+
+                                <button type="submit">+</button>
+                            </form>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Subtotal -->
+                    <div class="summary-price">
+                        ${{ number_format($subtotal, 2) }}
+                    </div>
+
+
+                    <!-- Remove -->
+                    <form
+                        action="{{ route('cart.remove', $item['id']) }}"
+                        method="POST"
+                    >
                         @csrf
-                        <button>-</button>
-                    </form>
 
-                    <span>{{ $item['quantity'] }}</span>
+                        <button
+                            type="submit"
+                            class="remove-btn"
+                        >
+                            Remove
+                        </button>
 
-                    <form action="{{ route('cart.increase',$item['id']) }}" method="POST">
-                        @csrf
-                        <button>+</button>
                     </form>
 
                 </div>
+
+            @endforeach
+
+        </div>
+
+        <!-- =========================
+             REMARK
+        ========================== -->
+        <div class="remark-section">
+
+            <h2>Remark</h2>
+
+            <textarea
+                name="remark"
+                form="checkout-form"
+                placeholder="Less sugar, no ice, extra shot..."
+            ></textarea>
+
+        </div>
+
+
+        <!-- =========================
+             ORDER SUMMARY
+        ========================== -->
+        <div class="totals-section">
+
+            <h2>Order Summary</h2>
+
+
+            <div class="total-row">
+
+                <span>Subtotal</span>
+
+                <span>
+                    ${{ number_format($total, 2) }}
+                </span>
+
             </div>
 
-            <div class="summary-price">
-                ${{ number_format($subtotal,2) }}
+
+            <div class="total-row">
+
+                <span>Discount</span>
+
+                <span>
+                    $0.00
+                </span>
+
             </div>
-            <form action="{{ route('cart.remove',$item['id']) }}" method="POST">
+
+
+            <div class="total-row grand-total">
+
+                <span>Total</span>
+
+                <span>
+                    ${{ number_format($total, 2) }}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             CHECKOUT
+        ========================== -->
+        <div class="checkout-bottom">
+
+            <form
+                id="checkout-form"
+                action="{{ route('checkout.store') }}"
+                method="POST"
+            >
 
                 @csrf
 
-                <button class="remove-btn">
-                    Remove
+
+                <!-- Pickup time is inside this form -->
+                <input
+                    type="hidden"
+                    name="pickup_time"
+                    id="selected-pickup-time"
+                    value="now"
+                >
+
+
+                <button
+                    type="submit"
+                    class="checkout-button"
+                >
+                    CONTINUE TO PAYMENT
                 </button>
 
             </form>
 
         </div>
 
-        @empty
 
-        <p>Your cart is empty.</p>
+    @else
 
-        @endforelse
+        <!-- =========================
+             EMPTY CART
+        ========================== -->
+        <div class="empty-cart">
 
-    </div>
+            <h2>Your cart is empty</h2>
 
-    <!-- Totals -->
-    <div class="totals-section">
+            <p>
+                Add some drinks from our menu to get started.
+            </p>
 
-        <div class="total-row">
-            <span>Subtotal</span>
-            <span>${{ number_format($total,2) }}</span>
+            <a
+                href="{{ route('menu.index') }}"
+                class="checkout-button"
+            >
+                BACK TO MENU
+            </a>
+
         </div>
 
-        <div class="total-row">
-            <span>Discount</span>
-            <span>$0.00</span>
-        </div>
+    @endif
 
-        <div class="total-row grand-total">
-            <span>Total</span>
-            <span>${{ number_format($total,2) }}</span>
-        </div>
+</div>
 
-    </div>
 
-    <!-- Remark -->
-    <div class="remark-section">
-        <h2>Remark</h2>
+<!-- =========================
+     PICKUP TIME SCRIPT
+========================== -->
 
-        <textarea
-            name="remark"
-            placeholder="Less sugar, no ice, extra shot..."></textarea>
-    </div>
+<script>
 
-    <!-- Checkout Button -->
-    <div class="checkout-bottom">
-        <form action="{{ route('checkout.store') }}" method="POST">
+document.addEventListener('DOMContentLoaded', function () {
 
-            @csrf
+    const pickupOptions = document.querySelectorAll(
+        'input[name="pickup_time"]'
+    );
 
-            <button class="checkout-button">
-                CHECK OUT
-            </button>
+    const selectedPickupTime =
+        document.getElementById('selected-pickup-time');
 
-        </form>
-    </div>
 
-</form>
+    pickupOptions.forEach(function (option) {
+
+        option.addEventListener('change', function () {
+
+            selectedPickupTime.value = this.value;
+
+        });
+
+    });
+
+});
+
+</script>
+
 @endsection

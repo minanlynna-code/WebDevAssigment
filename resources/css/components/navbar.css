@@ -1,106 +1,768 @@
-/* Navigation */
-.sun-nav {
-    background-color: #f0d53c;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* =========================================
+   SUN CAFE HEADER
+========================================= */
+
+.sun-header {
+    background: #faf7f2;
+    border-bottom: 1px solid #e5e5e5;
 }
 
-.sun-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-}
-
-.sun-nav ul li {
-    position: relative;
-}
-
-.sun-nav ul li a {
-    display: block;
-    padding: 15px 20px;
-    color: #0b0b0b;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s, color 0.3s;
-}
-
-.sun-nav ul li a:hover {
-    background: #333;
-    color: #fff;
-}
-
-/* Dropdown Menu */
-.sun-nav ul li ul {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #e9e3e3;
-    min-width: 180px;
-    display: none;
-    flex-direction: column;
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-    z-index: 100;
-}
-
-.sun-nav ul li:hover ul {
-    display: flex;
-}
-
-.sun-nav ul li ul li a {
-    padding: 12px 15px;
-    font-weight: normal;
-    color: #111;
-}
-
-.sun-nav ul li ul li a:hover {
-    background: #222;
-    color: #fff;
-}
-
-/* Sub-header Banner */
-.sun-header-banner {
-    background-color: #faf7f2;
-    width: 100%;
-    padding: 16px 0;
-    border-bottom: 2px solid #e5e5e5;
-}
-
-.sun-banner-container {
+.sun-header-container {
     max-width: 1200px;
-    margin: auto;
+    margin: 0 auto;
+
+    min-height: 120px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
-    padding: 0 20px;
+
+    padding: 10px 20px;
 }
 
-@media (max-width: 768px) {
-    .sun-nav ul {
-        flex-direction: column;
-    }
 
-    .sun-nav ul li ul {
-        position: static;
-        display: none;
-    }
+/* Logo */
 
-    .sun-nav ul li:hover ul {
-        display: block;
-    }
+.sun-logo {
+    flex: 0 0 150px;
 }
+
+.sun-logo img {
+    width: 130px;
+    height: auto;
+    display: block;
+}
+
+
+/* Tagline */
+
+.sun-tagline {
+    flex: 1;
+    text-align: center;
+}
+
+.sun-tagline h1 {
+    margin: 0;
+
+    font-family: "Times New Roman", serif;
+    font-size: 30px;
+    font-weight: 600;
+
+    color: #3c2f2f;
+}
+
+
+/* Cart */
+
+.sun-cart-area {
+    flex: 0 0 150px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sun-cart-btn {
+    display: inline-block;
+
+    padding: 12px 22px;
+
+    background: #f0d53c;
+    color: #000;
+
+    text-decoration: none;
+
+    border-radius: 25px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+.sun-cart-btn:hover {
+    background: #d6bc2d;
+    color: #000;
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.sun-nav {
+    background: #f0d53c;
+
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.sun-nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    min-height: 60px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 8px 20px;
+}
+
+
+/* Navigation Links */
+
+.sun-nav-links {
+    display: flex;
+    align-items: center;
+
+    gap: 5px;
+}
+
+.sun-nav-links a {
+    padding: 12px 15px;
+
+    color: #111;
+
+    text-decoration: none;
+
+    font-weight: 700;
+
+    border-radius: 8px;
+
+    transition: 0.2s ease;
+}
+
+.sun-nav-links a:hover {
+    background: #3c2f2f;
+    color: white;
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.sun-search {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+}
+
+.sun-search input {
+    width: 190px;
+
+    padding: 9px 14px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 22px;
+
+    outline: none;
+
+    background: white;
+}
+
+.sun-search input:focus {
+    border-color: #3c2f2f;
+}
+
+.sun-search button {
+    margin-left: 6px;
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #3c2f2f;
+    color: white;
+
+    cursor: pointer;
+}
+
+.sun-search button:hover {
+    background: #2a2020;
+}
+
+
+/* =========================================
+   USER AREA
+========================================= */
+
+.sun-user {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    white-space: nowrap;
+}
+
+.welcome-user {
+    font-weight: 600;
+    color: #3c2f2f;
+}
+
+
+/* Login / Register */
+
+.login-btn,
+.register-btn {
+    padding: 9px 16px;
+
+    border-radius: 20px;
+
+    text-decoration: none;
+
+    font-weight: 700;
+}
+
+.login-btn {
+    background: #3c2f2f;
+    color: white;
+}
+
+.login-btn:hover {
+    background: #2a2020;
+    color: white;
+}
+
+.register-btn {
+    background: white;
+    color: #3c2f2f;
+}
+
+.register-btn:hover {
+    background: #f5f5f5;
+    color: #3c2f2f;
+}
+
+
+/* Logout */
+
 .logout-btn {
     background: #3c2f2f;
     color: white;
+
     border: none;
-    padding: 8px 18px;
+
+    padding: 9px 17px;
+
     border-radius: 20px;
+
     cursor: pointer;
+
+    font-weight: 700;
 }
 
 .logout-btn:hover {
     background: #2a2020;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .sun-header-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .sun-logo {
+        flex: 0 0 auto;
+    }
+
+    .sun-tagline {
+        order: 3;
+        flex-basis: 100%;
+    }
+
+    .sun-cart-area {
+        flex: 0 0 auto;
+    }
+
+    .sun-nav-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sun-nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sun-search {
+        margin-left: 0;
+    }
+
+    .sun-user {
+        justify-content: center;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .sun-tagline h1 {
+        font-size: 23px;
+    }
+
+    .sun-search input {
+        width: 150px;
+    }
+
+    .sun-nav-links a {
+        padding: 9px 10px;
+        font-size: 14px;
+    }
+}/* =========================================
+   SUN CAFE HEADER
+========================================= */
+
+/* =========================================
+   SUN CAFE HEADER
+========================================= */
+
+.sun-header {
+    background-color: #faf7f2;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.sun-header-container {
+    max-width: 1200px;
+    height: 120px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+}
+
+
+/* Logo - LEFT */
+
+.sun-logo {
+    justify-self: start;
+}
+
+.sun-logo img {
+    width: 130px;
+    height: auto;
+    display: block;
+}
+
+
+/* Tagline - TRUE CENTER */
+
+.sun-tagline {
+    justify-self: center;
+    text-align: center;
+}
+
+.sun-tagline h1 {
+    margin: 0;
+
+    font-family: "Times New Roman", serif;
+    font-size: 30px;
+    font-weight: 600;
+
+    color: #3c2f2f;
+}
+
+
+/* Cart - RIGHT */
+
+.sun-cart-area {
+    justify-self: end;
+}
+
+.sun-cart-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 12px 22px;
+
+    background-color: #f0d53c;
+    color: #000;
+
+    text-decoration: none;
+
+    border-radius: 25px;
+
+    font-weight: 700;
+
+    transition: background-color 0.2s ease;
+}
+
+.sun-cart-btn:hover {
+    background-color: #d6bc2d;
+    color: #000;
+}
+
+.sun-cart-btn i {
+    font-size: 16px;
+}
+/* =========================================
+   NAVIGATION
+========================================= */
+
+.sun-nav {
+    background-color: #f0d53c;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.sun-nav-container {
+    max-width: 1200px;
+    min-height: 60px;
+
+    margin: 0 auto;
+    padding: 8px 20px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 20px;
+}
+
+
+/* Navigation links */
+
+.sun-nav-links {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    flex-shrink: 0;
+}
+
+.sun-nav-links a {
+    display: block;
+
+    padding: 12px 15px;
+
+    color: #111;
+    text-decoration: none;
+
+    font-weight: 700;
+
+    border-radius: 8px;
+
+    transition: 0.2s ease;
+}
+
+.sun-nav-links a:hover {
+    background-color: #3c2f2f;
+    color: #fff;
+}
+
+
+/* Search */
+
+.sun-search {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+}
+
+.sun-search input {
+    width: 190px;
+
+    padding: 9px 14px;
+
+    border: 1px solid #ccc;
+    border-radius: 22px;
+
+    outline: none;
+    background-color: #fff;
+}
+
+.sun-search input:focus {
+    border-color: #3c2f2f;
+}
+
+.sun-search button {
+    width: 40px;
+    height: 40px;
+
+    margin-left: 6px;
+
+    border: none;
+    border-radius: 50%;
+
+    background-color: #3c2f2f;
+    color: white;
+
+    cursor: pointer;
+}
+
+.sun-search button:hover {
+    background-color: #2a2020;
+}
+
+
+/* User */
+
+.sun-user {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    flex-shrink: 0;
+}
+
+.welcome-user {
+    color: #3c2f2f;
+    font-weight: 600;
+}
+
+
+/* Login */
+
+.login-btn,
+.register-btn {
+    padding: 9px 16px;
+
+    border-radius: 20px;
+
+    text-decoration: none;
+
+    font-weight: 700;
+}
+
+.login-btn {
+    background-color: #3c2f2f;
+    color: white;
+}
+
+.login-btn:hover {
+    background-color: #2a2020;
+    color: white;
+}
+
+.register-btn {
+    background-color: white;
+    color: #3c2f2f;
+}
+
+.register-btn:hover {
+    background-color: #f5f5f5;
+    color: #3c2f2f;
+}
+
+
+/* Logout */
+
+.logout-btn {
+    background-color: #3c2f2f;
+    color: white;
+
+    border: none;
+
+    padding: 9px 17px;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    font-weight: 700;
+}
+
+.logout-btn:hover {
+    background-color: #2a2020;
+}
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.sun-search {
+    margin-left: auto;
+
+    display: flex;
+    align-items: center;
+}
+
+.sun-search input {
+    width: 190px;
+
+    padding: 9px 14px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 22px;
+
+    outline: none;
+
+    background: white;
+}
+
+.sun-search input:focus {
+    border-color: #3c2f2f;
+}
+
+.sun-search button {
+    margin-left: 6px;
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #3c2f2f;
+    color: white;
+
+    cursor: pointer;
+}
+
+.sun-search button:hover {
+    background: #2a2020;
+}
+
+
+/* =========================================
+   USER AREA
+========================================= */
+
+.sun-user {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    white-space: nowrap;
+}
+
+.welcome-user {
+    font-weight: 600;
+    color: #3c2f2f;
+}
+
+
+/* Login / Register */
+
+.login-btn,
+.register-btn {
+    padding: 9px 16px;
+
+    border-radius: 20px;
+
+    text-decoration: none;
+
+    font-weight: 700;
+}
+
+.login-btn {
+    background: #3c2f2f;
+    color: white;
+}
+
+.login-btn:hover {
+    background: #2a2020;
+    color: white;
+}
+
+.register-btn {
+    background: white;
+    color: #3c2f2f;
+}
+
+.register-btn:hover {
+    background: #f5f5f5;
+    color: #3c2f2f;
+}
+
+
+/* Logout */
+
+.logout-btn {
+    background: #3c2f2f;
+    color: white;
+
+    border: none;
+
+    padding: 9px 17px;
+
+    border-radius: 20px;
+
+    cursor: pointer;
+
+    font-weight: 700;
+}
+
+.logout-btn:hover {
+    background: #2a2020;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 900px) {
+
+    .sun-header-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .sun-logo {
+        flex: 0 0 auto;
+    }
+
+    .sun-tagline {
+        order: 3;
+        flex-basis: 100%;
+    }
+
+    .sun-cart-area {
+        flex: 0 0 auto;
+    }
+
+    .sun-nav-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sun-nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .sun-search {
+        margin-left: 0;
+    }
+
+    .sun-user {
+        justify-content: center;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .sun-tagline h1 {
+        font-size: 23px;
+    }
+
+    .sun-search input {
+        width: 150px;
+    }
+
+    .sun-nav-links a {
+        padding: 9px 10px;
+        font-size: 14px;
+    }
 }

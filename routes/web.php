@@ -6,6 +6,9 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,17 +41,27 @@ Route::middleware('auth')->group(function () {
     Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
     Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
     Route::post('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/cart/increase/{id}', [CartController::class, 'increase'])->name('cart.increase');
+    Route::post('/cart/decrease/{id}', [CartController::class, 'decrease'])->name('cart.decrease');
 
     // Checkout
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
+    // Orders
+    Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+
     // Dashboard (optional, can remove later)
     Route::get('/dashboard', function () {
         return redirect()->route('menu.index');
     })->name('dashboard');
+    // Admin Orders
+    Route::get('/admin/orders', [AdminOrderController::class, 'index'])->name('admin.orders.index');
+
+    Route::post('/admin/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('admin.orders.status');
 });
-Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-    ->name('logout');
 
 require __DIR__ . '/auth.php';

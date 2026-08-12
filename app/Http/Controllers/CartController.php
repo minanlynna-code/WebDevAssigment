@@ -73,7 +73,12 @@ class CartController extends Controller
         $cart = session()->get('cart', []);
 
         if (isset($cart[$id])) {
-            $cart[$id]['quantity']++;
+
+            $product = Product::find($id);
+
+            if ($product && $cart[$id]['quantity'] < $product->stock) {
+                $cart[$id]['quantity']++;
+            }
         }
 
         session()->put('cart', $cart);
