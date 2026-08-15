@@ -53,9 +53,10 @@ class CheckoutController extends Controller
 
         $order = Order::create([
             'user_id' => Auth::id(),
-            'total_price' => $total,
+            'order_number' => 'ORD-' . now()->format('YmdHis'),
+            'total' => $total,
             'pickup_time' => $request->pickup_time,
-            'special_request' => $request->special_request,
+            'remark' => $request->remark,
             'status' => 'pending',
         ]);
 

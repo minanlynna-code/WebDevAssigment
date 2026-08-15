@@ -1,98 +1,86 @@
 @extends('layouts.app')
 
-@section('title', 'Manage Orders')
+@section('title','Manage Orders')
 
 @section('content')
 
-<div class="container mt-5">
+<div class="container py-4">
 
-```
-<h2>Manage Orders</h2>
+    <h1>Manage Orders</h1>
 
-@if(session('success'))
+    @if(session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
-@endif
+    @endif
 
-<table class="table table-bordered align-middle">
+    <table class="table table-bordered">
 
-    <thead class="table-dark">
-        <tr>
-            <th>Order</th>
-            <th>Customer</th>
-            <th>Items</th>
-            <th>Total</th>
-            <th>Pickup</th>
-            <th>Status</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-
-    <tbody>
-
-        @foreach($orders as $order)
+        <thead>
 
             <tr>
 
-                <td>#{{ $order->id }}</td>
+                <th>Order #</th>
+                <th>Customer</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Change</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach($orders as $order)
+
+            <tr>
+
+                <td>{{ $order->order_number }}</td>
 
                 <td>{{ $order->user->name }}</td>
 
-                <td>
-
-                    @foreach($order->items as $item)
-
-                        {{ $item->product->name }}
-                        (x{{ $item->quantity }})<br>
-
-                    @endforeach
-
-                </td>
+                <td>${{ number_format($order->total,2) }}</td>
 
                 <td>
-                    ${{ number_format($order->total_price, 2) }}
-                </td>
 
-                <td>{{ $order->pickup_time }}</td>
+                    <span class="badge bg-primary">
 
-                <td>
-                    <span class="badge bg-secondary">
                         {{ ucfirst($order->status) }}
+
                     </span>
+
                 </td>
 
                 <td>
 
                     <form
-                        action="{{ route('admin.orders.status', $order) }}"
-                        method="POST"
-                    >
+                        action="{{ route('admin.orders.status',$order) }}"
+                        method="POST">
 
                         @csrf
 
                         <select
                             name="status"
-                            class="form-select form-select-sm mb-2"
-                        >
+                            class="form-select">
 
-                            @foreach(['pending','preparing','ready','completed','cancelled'] as $status)
+                            <option value="pending">Pending</option>
 
-                                <option
-                                    value="{{ $status }}"
-                                    @selected($order->status === $status)
-                                >
-                                    {{ ucfirst($status) }}
-                                </option>
+                            <option value="preparing">Preparing</option>
 
-                            @endforeach
+                            <option value="ready">Ready</option>
+
+                            <option value="completed">Completed</option>
+
+                            <option value="cancelled">Cancelled</option>
 
                         </select>
 
                         <button
-                            class="btn btn-primary btn-sm w-100"
-                        >
+                            class="btn btn-warning mt-2">
+
                             Update
+
                         </button>
 
                     </form>
@@ -101,12 +89,11 @@
 
             </tr>
 
-        @endforeach
+            @endforeach
 
-    </tbody>
+        </tbody>
 
-</table>
-```
+    </table>
 
 </div>
 

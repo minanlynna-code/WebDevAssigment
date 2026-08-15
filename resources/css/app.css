@@ -5,6 +5,8 @@
 @import './pages/product-detail.css';
 @import './pages/cart.css';
 @import './pages/auth.css';
+@import './admin/products.css';
+@import './admin/categories.css';
 
 :root {
     --dark-brown: #3c2f2f;
