@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\PaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,10 @@ use App\Http\Controllers\Admin\AdminUserController;
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
 
 Route::get('/menu', [ProductController::class, 'index'])
     ->name('menu.index');
@@ -35,8 +40,7 @@ Route::get('/menu/{product}', [ProductController::class, 'show'])
 |--------------------------------------------------------------------------
 */
 
-Route::middleware('auth')->group(function () {
-
+Route::middleware(['auth', 'customer'])->group(function () {
     // Profile
     Route::get('/profile', [ProfileController::class, 'edit'])
         ->name('profile.edit');
@@ -82,11 +86,19 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/orders/{order}', [OrderController::class, 'show'])
         ->name('orders.show');
+    // Payment
+    Route::get('/payment/{order}', [PaymentController::class, 'create'])
+        ->name('payment.create');
 
+    Route::get('/payment/{order}/success', [PaymentController::class, 'success'])
+        ->name('payment.success');
+
+    Route::get('/payment/{order}/cancel', [PaymentController::class, 'cancel'])
+        ->name('payment.cancel');
 
     // Dashboard
     Route::get('/dashboard', function () {
-        return redirect()->route('menu.index');
+        return redirect()->route('home');
     })->name('dashboard');
 });
 

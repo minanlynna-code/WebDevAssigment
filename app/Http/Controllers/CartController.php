@@ -11,6 +11,7 @@ class CartController extends Controller
     public function index()
     {
         $cart = session()->get('cart', []);
+
         return view('cart', compact('cart'));
     }
 
@@ -20,13 +21,17 @@ class CartController extends Controller
         $cart = session()->get('cart', []);
 
         $quantity = (int) $request->quantity;
+
         if ($quantity < 1) {
             $quantity = 1;
         }
 
         if (isset($cart[$product->id])) {
+
             $cart[$product->id]['quantity'] += $quantity;
+
         } else {
+
             $cart[$product->id] = [
                 'id'       => $product->id,
                 'name'     => $product->name,
@@ -38,7 +43,13 @@ class CartController extends Controller
 
         session()->put('cart', $cart);
 
-        return redirect()->route('cart.index');
+        // Go back to menu instead of cart
+        return redirect()
+            ->route('menu.index')
+            ->with('cart_added', [
+                'name' => $product->name,
+                'quantity' => $quantity,
+            ]);
     }
 
     // Update quantity
@@ -68,6 +79,8 @@ class CartController extends Controller
 
         return redirect()->route('cart.index');
     }
+
+    // Increase quantity
     public function increase($id)
     {
         $cart = session()->get('cart', []);
@@ -85,11 +98,14 @@ class CartController extends Controller
 
         return redirect()->route('cart.index');
     }
+
+    // Decrease quantity
     public function decrease($id)
     {
         $cart = session()->get('cart', []);
 
         if (isset($cart[$id])) {
+
             if ($cart[$id]['quantity'] > 1) {
                 $cart[$id]['quantity']--;
             }

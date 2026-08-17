@@ -48,7 +48,7 @@
                     <!-- CUSTOMER LINKS -->
                     <a href="{{ route('home') }}">Home</a>
                     <a href="{{ route('menu.index') }}">Menu</a>
-                    <a href="#">About</a>
+                    <a href="{{ route('about') }}">About</a>
                     <a href="#">Contact</a>
                     <a href="{{ route('orders.index') }}">My Orders</a>
                 @endif
@@ -74,7 +74,6 @@
         <!-- User Controls -->
         <div class="sun-user">
             @auth
-                <!-- <span class="welcome-user">Hi, {{ Auth::user()->name }}</span> -->
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="logout-btn">Logout</button>

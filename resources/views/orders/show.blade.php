@@ -6,7 +6,6 @@
 
 <div class="checkout-page">
 
-```
 <!-- Progress -->
 <div class="checkout-progress">
 
@@ -105,7 +104,6 @@
     </div>
 
 </div>
-```
 
 </div>
 

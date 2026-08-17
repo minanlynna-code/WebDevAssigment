@@ -101,7 +101,103 @@
     background: #d6bc2d;
     color: #000;
 }
+/* =========================
+   PICKUP / DELIVERY BUTTONS
+========================= */
+.order-card-btn {
+    background-color: #f0d53c;
+    border: none;
+    border-radius: 16px;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: #000000;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: 0.5px;
+    transition: background-color 0.2s, transform 0.2s;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
 
+.order-card-btn:hover {
+    background-color: #d6bc2d;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.order-emoji {
+    font-size: 36px;
+}
+
+/* =========================
+   CENTERED POPUP MODAL
+========================= */
+.custom-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 99999;
+}
+
+.custom-modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.custom-modal-box {
+    background: #000000;
+    padding: 30px 24px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 360px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.modal-emoji {
+    font-size: 40px;
+    margin-bottom: 8px;
+}
+
+.custom-modal-box h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 8px;
+}
+
+.custom-modal-box p {
+    color: #666666;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.btn-modal-close {
+    background-color: #f0d53c;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 14px;
+    color: #000000;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-modal-close:hover {
+    background-color: #d6bc2d;
+}
 @media (max-width: 1200px) {
     .menu-grid {
         grid-template-columns: repeat(3, 1fr);

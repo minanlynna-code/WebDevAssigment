@@ -58,4 +58,62 @@
 
 </div>
 
+@if(session('cart_added'))
+
+<div id="cart-toast" class="cart-toast">
+
+    <div class="cart-toast-message">
+        <strong>
+            {{ session('cart_added.name') }}
+        </strong>
+
+        added to your cart.
+    </div>
+
+    <a
+        href="{{ route('cart.index') }}"
+        class="cart-toast-button">
+        View Cart
+    </a>
+
+    <button
+        type="button"
+        class="cart-toast-close"
+        onclick="closeCartToast()">
+        ×
+    </button>
+
+</div>
+
+@endif
+
+
+<script>
+    function closeCartToast() {
+        const toast = document.getElementById('cart-toast');
+
+        if (toast) {
+            toast.classList.add('hide');
+
+            setTimeout(function() {
+                toast.remove();
+            }, 300);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        const toast = document.getElementById('cart-toast');
+
+        if (toast) {
+
+            setTimeout(function() {
+                closeCartToast();
+            }, 5000);
+
+        }
+
+    });
+</script>
+
 @endsection
