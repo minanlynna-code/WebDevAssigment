@@ -7,8 +7,6 @@
 <div class="menu-container">
 
     <div class="menu-header">
-        <h1>Our Menu</h1>
-        <p>Freshly brewed coffee and delicious treats made with love.</p>
     </div>
     <div class="category-filter">
 
