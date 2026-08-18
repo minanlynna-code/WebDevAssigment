@@ -222,3 +222,75 @@
 .btn-modal-close:hover {
     background-color: #d6bc2d;
 }
+
+/* =========================
+   CART TOAST NOTIFICATION
+========================= */
+.cart-toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%); /* Centers horizontally */
+    background-color: #ffffff;
+    color: #333333;
+    padding: 14px 22px;
+    border-radius: 50px; /* Pill shape */
+    border: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15); /* Strong shadow for visibility */
+    z-index: 9999;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.cart-toast-message {
+    font-size: 14px;
+    font-weight: 500;
+    color: #333333;
+    white-space: nowrap;
+}
+
+.cart-toast-message strong {
+    color: #3c2f2f;
+    font-weight: 700;
+}
+
+.cart-toast-button {
+    background: #f0d53c;
+    color: #000000;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 8px 18px;
+    border-radius: 20px;
+    white-space: nowrap;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.cart-toast-button:hover {
+    background: #d6bc2d;
+    color: #000000;
+}
+
+.cart-toast-close {
+    background: transparent;
+    border: none;
+    color: #999999;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 4px;
+    transition: color 0.2s;
+}
+
+.cart-toast-close:hover {
+    color: #333333;
+}
+
+/* Hide Animation */
+.cart-toast.hide {
+    opacity: 0;
+    transform: translate(-50%, 20px); /* Keeps center position while sliding down */
+    pointer-events: none;
+}

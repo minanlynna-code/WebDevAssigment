@@ -11,7 +11,6 @@
 
         <div>
             <h1>Admin Dashboard</h1>
-            <p>Welcome back, {{ auth()->user()->name }}.</p>
         </div>
 
     </div>
